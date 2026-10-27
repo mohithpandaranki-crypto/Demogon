@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demogon | Smart Learning Dashboard</title>
+    <link rel="stylesheet" href="csscode.css">
+    <script src="jscode.js" defer></script>
+</head>
+<body>
+    <div class="app">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="#overview" class="brand">
+                <div class="brand-icon">D</div>
+                <div>
+                    <h2>Demogon</h2>
+                    <span>SMART LEARNING</span>
+                </div>
+            </a>
+
+            <p class="menu-label">WORKSPACE</p>
+
+            <nav class="navigation">
+                <a href="#overview" class="nav-link active" data-page="overview">
+                    <span>▦</span> Overview
+                </a>
+                <a href="#topics" class="nav-link" data-page="topics">
+                    <span>▤</span> My Topics
+                </a>
+                <a href="#review" class="nav-link" data-page="review">
+                    <span>↻</span> Review Topics
+                </a>
+                <a href="#progress" class="nav-link" data-page="progress">
+                    <span>◷</span> My Progress
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="side-note">
+                    <div class="note-icon">✦</div>
+                    <h3>Small steps. Big progress.</h3>
+                    <p>Learn consistently and build lasting knowledge.</p>
+                </div>
+                <p class="version">DEMOGON · VERSION 1.0</p>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">YOUR PERSONAL LEARNING SPACE</p>
+                    <h1 id="greeting">Welcome back!</h1>
+                    <p class="subtitle" id="current-date">Let's make today productive.</p>
+                </div>
+                <button class="primary-button" id="add-topic-button">
+                    <span>＋</span> Add topic
+                </button>
+            </header>
+
+            <!-- Overview -->
+            <section id="overview-page" class="page active">
+                <div class="hero">
+                    <div class="hero-content">
+                        <span class="hero-tag">✦ YOUR LEARNING JOURNEY</span>
+                        <h2>Learn smarter.<br><span>Remember longer.</span></h2>
+                        <p>Track what you learn, strengthen weak topics, and see your knowledge grow every day.</p>
+                        <button class="hero-button" id="start-learning">Explore my topics <span>→</span></button>
+                    </div>
+                    <div class="hero-art" aria-hidden="true">
+                        <div class="orbit orbit-one"></div>
+                        <div class="orbit orbit-two"></div>
+                        <div class="brain-symbol">✧</div>
+                        <div class="float-card float-card-one">✦ Learning</div>
+                        <div class="float-card float-card-two">↗ Progress</div>
+                    </div>
+                </div>
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Your overview</h2>
+                        <p>A quick look at your learning journey.</p>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <div class="stat-top"><span>Total topics</span><span class="stat-icon purple">▤</span></div>
+                        <h3 id="total-topics">0</h3>
+                        <p>Topics added to your library</p>
+                    </article>
+                    <article class="stat-card">
+                        <div class="stat-top"><span>Strong topics</span><span class="stat-icon green">✓</span></div>
+                        <h3 id="strong-topics">0</h3>
+                        <p>Topics you feel confident in</p>
+                    </article>
+                    <article class="stat-card">
+                        <div class="stat-top"><span>Need practice</span><span class="stat-icon orange">↻</span></div>
+                        <h3 id="weak-topics">0</h3>
+                        <p>Topics to spend more time on</p>
+                    </article>
+                    <article class="stat-card">
+                        <div class="stat-top"><span>Overall mastery</span><span class="stat-icon blue">◈</span></div>
+                        <h3 id="overall-mastery">0%</h3>
+                        <p>Based on your confidence ratings</p>
+                    </article>
+                </div>
+
+                <div class="content-grid">
+                    <section class="panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h2>Topics to strengthen</h2>
+                                <p>Your lowest-confidence topics appear here.</p>
+                            </div>
+                            <button class="text-button" data-go="topics">View all →</button>
+                        </div>
+                        <div id="weak-topic-list" class="topic-list"></div>
+                    </section>
+
+                    <section class="panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h2>Mastery map</h2>
+                                <p>How confident are you?</p>
+                            </div>
+                        </div>
+                        <div id="mastery-map" class="mastery-map"></div>
+                        <div class="legend">
+                            <span><i class="dot green-dot"></i> Strong</span>
+                            <span><i class="dot orange-dot"></i> Learning</span>
+                            <span><i class="dot red-dot"></i> Needs work</span>
+                        </div>
+                    </section>
+                </div>
+
+                <section class="panel recent-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h2>Recently added</h2>
+                            <p>Your latest learning topics.</p>
+                        </div>
+                        <button class="text-button" data-go="topics">All topics →</button>
+                    </div>
+                    <div id="recent-topic-list" class="recent-list"></div>
+                </section>
+            </section>
+
+            <!-- All topics -->
+            <section id="topics-page" class="page">
+                <div class="page-heading">
+                    <div>
+                        <h2>My learning topics</h2>
+                        <p>Organize your knowledge and track your confidence.</p>
+                    </div>
+                    <button class="primary-button" id="add-topic-button-two">＋ Add topic</button>
+                </div>
+                <div class="toolbar">
+                    <input id="topic-search" type="search" placeholder="Search topics or subjects..." aria-label="Search topics">
+                    <select id="subject-filter" aria-label="Filter by subject">
+                        <option value="all">All subjects</option>
+                    </select>
+                    <select id="confidence-filter" aria-label="Filter by confidence">
+                        <option value="all">All confidence levels</option>
+                        <option value="low">Needs practice (1–2)</option>
+                        <option value="medium">Learning (3)</option>
+                        <option value="high">Strong (4–5)</option>
+                    </select>
+                </div>
+                <div id="all-topics-list" class="all-topics-grid"></div>
+            </section>
+
+            <!-- Review -->
+            <section id="review-page" class="page">
+                <div class="page-heading">
+                    <div>
+                        <h2>Review your knowledge</h2>
+                        <p>Practice recalling what you have learned.</p>
+                    </div>
+                </div>
+                <div class="review-intro">
+                    <div class="review-symbol">↻</div>
+                    <div>
+                        <h3>Active recall practice</h3>
+                        <p>Try answering your question before revealing the answer. Then rate how well you remembered it.</p>
+                    </div>
+                </div>
+                <div id="review-list" class="review-list"></div>
+            </section>
+
+            <!-- Progress -->
+            <section id="progress-page" class="page">
+                <div class="page-heading">
+                    <div>
+                        <h2>Your progress</h2>
+                        <p>See how your confidence changes as you learn.</p>
+                    </div>
+                </div>
+                <div class="progress-summary">
+                    <div class="progress-circle" id="progress-circle">
+                        <div><strong id="progress-percentage">0%</strong><span>mastery</span></div>
+                    </div>
+                    <div>
+                        <h3>Your knowledge, at a glance</h3>
+                        <p>Keep reviewing difficult topics and update your confidence honestly. Your progress will update automatically.</p>
+                        <div class="progress-facts">
+                            <span><strong id="progress-total">0</strong> topics tracked</span>
+                            <span><strong id="progress-strong">0</strong> strong topics</span>
+                        </div>
+                    </div>
+                </div>
+                <section class="panel">
+                    <div class="panel-heading">
+                        <div><h2>Confidence by topic</h2><p>Ratings from 1 (beginner) to 5 (confident).</p></div>
+                    </div>
+                    <div id="progress-topic-list" class="progress-topic-list"></div>
+                </section>
+                <div class="data-actions">
+                    <div><h3>Your data belongs to you</h3><p>Export a backup or clear your saved topics from this browser.</p></div>
+                    <div class="action-buttons">
+                        <button class="secondary-button" id="export-data">Export backup</button>
+                        <button class="danger-button" id="clear-data">Clear all data</button>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <span>© 2026 Demogon</span>
+                <span>Built to help you learn better. <b>✦</b></span>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Add/Edit Topic Modal -->
+    <div class="modal-backdrop" id="topic-modal" hidden>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="modal-heading">
+                <div>
+                    <p class="eyebrow">BUILD YOUR KNOWLEDGE</p>
+                    <h2 id="modal-title">Add a new topic</h2>
+                </div>
+                <button class="close-button" id="close-modal" aria-label="Close dialog">×</button>
+            </div>
+
+            <form id="topic-form">
+                <label for="topic-name">Topic name *</label>
+                <input id="topic-name" name="topicName" required maxlength="100" placeholder="e.g. Binary Search">
+
+                <label for="topic-subject">Subject *</label>
+                <input id="topic-subject" name="subject" required maxlength="60" placeholder="e.g. Data Structures">
+
+                <label for="topic-confidence">How confident are you? *</label>
+                <div class="confidence-picker">
+                    <label><input type="radio" name="confidence" value="1" required><span>1<br><small>New</small></span></label>
+                    <label><input type="radio" name="confidence" value="2"><span>2<br><small>Low</small></span></label>
+                    <label><input type="radio" name="confidence" value="3"><span>3<br><small>Okay</small></span></label>
+                    <label><input type="radio" name="confidence" value="4"><span>4<br><small>Good</small></span></label>
+                    <label><input type="radio" name="confidence" value="5"><span>5<br><small>Strong</small></span></label>
+                </div>
+
+                <label for="recall-question">Practice question (optional)</label>
+                <textarea id="recall-question" name="question" rows="2" maxlength="500" placeholder="What question could test your understanding?"></textarea>
+
+                <label for="recall-answer">Answer (optional)</label>
+                <textarea id="recall-answer" name="answer" rows="3" maxlength="1500" placeholder="Write a short answer to reveal during review."></textarea>
+
+                <p class="form-note">Your topics are saved in this browser on this device.</p>
+                <div class="modal-actions">
+                    <button type="button" class="secondary-button" id="cancel-modal">Cancel</button>
+                    <button type="submit" class="primary-button">Save topic</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
